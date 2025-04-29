@@ -15,9 +15,9 @@ class Player(CircleShape):
         right = (
             pygame.Vector2(0, 1).rotate(self.rotation + 90) * self.radius / 1.5
         )
-        a = self.position + forward * self.radius
-        b = self.position - forward * self.radius - right
-        c = self.position - forward * self.radius + right
+        a = self.position + forward * self.radius  # pyright: ignore
+        b = self.position - forward * self.radius - right  # pyright: ignore
+        c = self.position - forward * self.radius + right  # pyright: ignore
         return [a, b, c]
 
     def draw(self, screen):
