@@ -29,7 +29,7 @@ def main():
     Player.containers = (updatables, drawables)  # pyright: ignore
     Asteroid.containers = (asteroids, updatables, drawables)  # pyright: ignore
     AsteroidField.containers = (updatables,)  # pyright: ignore
-    Shot.containers = (updatables, drawables)  # pyright: ignore
+    Shot.containers = (shots, updatables, drawables)  # pyright: ignore
 
     # Instantiate game objects
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
@@ -48,11 +48,20 @@ def main():
         # Call `.update()` method on updatables
         updatables.update(dt)
 
-        # Check for collisions
+        # Check for collisions between asteroids and players
+        # Game over when player collides with an asteroid
         for asteroid in asteroids:
             if asteroid.collided_with(player):
                 print("Game over!")
                 return
+
+        # Check for collisions between asteroids and shots
+        # shots kill asteroids
+        for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.collided_with(shot):
+                    asteroid.kill()
+                    shot.kill()
 
         # Draw drawables individually
         for thing in drawables:
