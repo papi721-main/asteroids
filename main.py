@@ -10,6 +10,12 @@ def main():
     # Create a GUI window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # Make a pygame Clock object
+    game_clock = pygame.time.Clock()
+
+    # Make a delta time variable for the game
+    dt = 0
+
     # Start a game loop
     while True:
         # Exit the game loop if the user has closed the window
@@ -20,6 +26,9 @@ def main():
 
         screen.fill("black")
         pygame.display.flip()
+
+        dt = game_clock.tick(60) / 1000
+        print(dt)
 
 
 if __name__ == "__main__":
