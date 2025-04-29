@@ -2,6 +2,7 @@
 import pygame
 
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
+from player import Player
 
 
 def main():
@@ -16,6 +17,9 @@ def main():
     # Make a delta time variable for the game
     dt = 0
 
+    # Instantiate a `Player` object
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
     # Start a game loop
     while True:
         # Exit the game loop if the user has closed the window
@@ -25,10 +29,10 @@ def main():
                 return
 
         screen.fill("black")
-        pygame.display.flip()
+        player.draw(screen)
 
+        pygame.display.flip()
         dt = game_clock.tick(60) / 1000
-        print(dt)
 
 
 if __name__ == "__main__":
