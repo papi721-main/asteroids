@@ -46,6 +46,12 @@ def main():
         # Call `.update()` method on updatables
         updatables.update(dt)
 
+        # Check for collisions
+        for asteroid in asteroids:
+            if asteroid.collided_with(player):
+                print("Game over!")
+                return
+
         # Draw drawables individually
         for thing in drawables:
             thing.draw(screen)
